@@ -34,8 +34,9 @@ app.all('/*', (req, res) => {
     let path = req.path;
     let headers = req.headers;
     let body = req.body;
+    let ip = req.ip;
     
-    console.log(`${verb}/${httpVersion}: ${path} from ${host}`);
+    console.log(`${verb}/${httpVersion}: ${host}${path} from ${ip}`);
     res.contentType('json');
     return res.status(200).send({
         verb,
@@ -44,6 +45,7 @@ app.all('/*', (req, res) => {
         host,
         httpVersion,
         path,
-        headers
+        headers,
+        ip
     });
 });
